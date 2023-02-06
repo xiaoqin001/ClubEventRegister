@@ -1,11 +1,11 @@
-const { validationResutl, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 
 const handleValidationErrors = (req, _res, next) => {
-    const validationErrors = validationResutl(req);
+    const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
         const errors = validationErrors
             .array()
-            .map((error) => '${error.msg');
+            .map((error) => `${error.msg}`);
 
         const err = Error('Bad request');
         err.errors = errors;
