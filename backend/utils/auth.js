@@ -7,7 +7,7 @@ const { secret, expiresIn } = jwtConfig;
 // This function will be used in the login and signup routes later.
 const setTokenCookie = (res, user) => {
     const token = jwt.sign(
-        {data: user.toSafeObject()},
+        { data: user.toSafeObject() },
         secret,
         { expiresIn: parseInt(expiresIn)}
     )

@@ -1,6 +1,6 @@
 'use strict';
 const { Validator } = require('sequelize');
-const { bcrypt } = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const { findDOMNode } = require('react-dom');
 
 
@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
 
-  User.prototype.validatePassword = function(password) {
+  User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
   }
 
@@ -77,29 +77,28 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.login = async function({ credential, password }) {
-    const Op = require('sequelize');
-    const user = User.scope('loginUser').findOne({
+    const { Op } = require('sequelize');
+    const user = await User.scope('loginUser').findOne({
       where: {
         [Op.or]: {
           username: credential,
           email: credential
         }
       }
-    }
-    )
-    if (user && User.validatePassword(password)) {
+    });
+    if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id)
     }
   }
 
   User.signup = async function({ username, email, password }) {
-    const hashedPassword = bcrypt.hashedPassword(password)
-    const user = User.create({
+    const hashedPassword = bcrypt.hashSync(password)
+    const user = await User.create({
       username,
       email,
       hashedPassword
     })
-    return await User.scope('currentUser').findBypk(user.id)
+    return await User.scope('currentUser').findByPk(user.id)
   }
   return User;
 };
