@@ -2,6 +2,7 @@
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const { findDOMNode } = require('react-dom');
+const { useSyncExternalStore } = require('react');
 
 
 module.exports = (sequelize, DataTypes) => {
@@ -35,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       }
     },
+    cartID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
   }, {
     defualtScope: {
       attributes:{
@@ -55,6 +61,12 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
+    User.hasOne(models.Cart);
+    User.hasMany(modesl.RegisteredEvent);
+    User.belongsToMany(
+      models.Event,
+      { through: models.Register }
+    );
   };
 
   // Authentication Flow
