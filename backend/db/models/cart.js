@@ -3,8 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const Cart = sequelize.define('Cart', {
     userID: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
     },
     UserID: {
       type: DataTypes.INTEGER,
@@ -21,5 +19,19 @@ module.exports = (sequelize, DataTypes) => {
       { through: models.Register }
     );
   };
+
+  // static method
+  Cart.getCart = async function(userID) {
+
+    return await Cart.findOne({ where: { UserID: userID }, include: RegisteredEvent });
+  }
+  Cart.createCart = async function(userID) {
+    const cart = await Cart.create({
+      userID,
+    })
+    return await Cart.findOne({ where: { UserID: userID } });
+  }
+
+
   return Cart;
 };

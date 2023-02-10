@@ -1,4 +1,7 @@
 'use strict';
+
+const registeredevent = require("./registeredevent");
+
 module.exports = (sequelize, DataTypes) => {
   const Register = sequelize.define('Register', {
     cartID: {
@@ -18,6 +21,23 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Register.associate = function(models) {
     // associations can be defined here
+    Register.hasOne(registeredevent);
   };
+
+  Register.registerEvent = async function(params) {
+    const cart = params.cartID;
+    const user = params.userID;
+    const amount = params.amount;
+    const newRegister = await Register.create(
+      {
+        cartID: cart,
+        userID: user,
+        amount: amount,
+      }
+    );
+    return newRegister;
+  }
+
+
   return Register;
 };

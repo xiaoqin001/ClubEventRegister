@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const cartRouter = require('./cart.js');
+const eventRouter = require('./event.js');
+const registerRouter = require('./register.js')
 // const asyncHandler = require('express-async-handler');
 // const { setTokenCookie } = require('../../utils/auth.js');
 // const { restoreUser } = require('../../utils/auth.js');
@@ -10,6 +13,14 @@ const usersRouter = require('./users.js');
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/users/cart', cartRouter);
+
+router.use('/event', eventRouter);
+
+router.use('/registerRouter', registerRouter)
+
+
 
 // router.post('/test', function(req, res) {
 //     res.json({ requestBody: req.body });
