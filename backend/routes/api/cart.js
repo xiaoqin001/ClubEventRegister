@@ -24,15 +24,15 @@ router.get(
     })
 );
 
-router.post(
-    '/',
-    asyncHandler(async (req, res, next)  => {
-        const UserID = req.body;
-        const cart = await Cart.createCart(UserID);
+// router.post(
+//     '/',
+//     asyncHandler(async (req, res, next)  => {
+//         const UserID = req.body;
+//         const cart = await Cart.createCart(UserID);
 
-        return res.json({ data: cart });
-    })
-)
+//         return res.json({ data: cart });
+//     })
+// )
 
 // router.put();
 // router.delete();
