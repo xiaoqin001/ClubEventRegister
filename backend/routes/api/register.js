@@ -1,8 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Event } = require('../../db/Event');
-const { Register } = require('../../db/Register');
-const { RegisteredEvent } = require('../../db/RegisteredEvent');
+const { Event } = require('../../db/models');
+const { Register } = require('../../db/models');
+const { RegisteredEvent } = require('../../db/models');
 
 const router = express.Router();
 

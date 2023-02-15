@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
     // associations can be defined here
     User.hasOne(models.Cart);
-    User.hasMany(modesl.RegisteredEvent);
+    User.hasMany(models.RegisteredEvent);
     User.belongsToMany(
       models.Event,
       { through: models.Register }

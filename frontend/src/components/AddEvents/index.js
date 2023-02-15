@@ -95,6 +95,7 @@ function AddEvents ()  {
             <Form.Item name="ticketInventory" label="Ticket Inventory" rules={[{required: true,},]}>
                 <InputNumber
                     onChange={e => {params.location = e.target.value}}
+
                     value={params.location}
                 />
             </Form.Item>

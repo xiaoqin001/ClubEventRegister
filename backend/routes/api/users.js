@@ -37,10 +37,15 @@ router.post(
         const { username, email, password  } = req.body;
         const user = await User.signup({ username, email, password });
         const cart = await Cart.createCart(user.id);
+        let senddata = [];
+        let obj = {};
+        obj['user'] = user;
+        obj['cart'] = cart;
+        senddate.push(obj);
 
         await setTokenCookie(res, user);
 
-        return res.json({ user });
+        return res.json({ data: senddata });
     })
 );
 

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     RegisteredEvent.belongsTo(models.Cart);
     RegisteredEvent.belongsTo(models.User);
-    RegisteredEvent.belongsTo(models.Register);
+    // RegisteredEvent.belongsTo(models.Register);
     RegisteredEvent.belongsToMany(
       models.Event,
       { through: models.Register }
