@@ -112,6 +112,9 @@ module.exports = (sequelize, DataTypes) => {
     })
     const cart = await user.createCart({UserID: user.id});
     // user.addCart(cart);
+    user.cartID = cart.id
+    console.log(user)
+    console.log(cart)
     return await User.scope('currentUser').findByPk(user.id)
   }
   return User;

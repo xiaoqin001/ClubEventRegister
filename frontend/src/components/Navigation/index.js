@@ -10,7 +10,10 @@ function Navigation({ isLoaded }) {
 
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <NavLink exact to='/addevent'>Add Event</NavLink>
+                <ProfileButton user={sessionUser} />
+            </>
         );
     } else {
         sessionLinks = (

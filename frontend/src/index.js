@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import './index.css';
 import App from './App';
+import AddEvents from './components/AddEvents'
 import configureStore from './store';
 import * as sessionActions from './store/session';
 import { csrfFetch, restoreCSRF } from './store/csrf';
@@ -22,7 +23,9 @@ function Root() {
   return (
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <App />
+        <Route path='/'>
+          <App />
+        </Route>
       </BrowserRouter>
     </ReduxProvider>
   );

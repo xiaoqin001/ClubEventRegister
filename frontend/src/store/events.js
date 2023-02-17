@@ -4,11 +4,11 @@ const ADD_EVENT = 'events/AddEvent';
 export const AddEvent = (events) => {
     return {
         type: ADD_EVENT,
-        payload: events
     }
 }
 
 export const addevent = (params) => async dispatch => {
+    console.log(params);
     const response = await csrfFetch('api/event', {
         method: "POST",
         body: JSON.stringify({
@@ -16,6 +16,7 @@ export const addevent = (params) => async dispatch => {
         }),
     });
     const data = await response.json();
+    console.log(data)
     dispatch(AddEvent(data.data.events));
     return response;
 }
@@ -26,10 +27,6 @@ const eventsReducer = (state={}, action) => {
     switch (action.type) {
         case ADD_EVENT:
             newState = Object.assign({}, state);
-            // newState.events.forEach(events=>{
-            //     newState[events.id] = events;
-            // });
-            newState.event = action.payload.event;
             return newState;
         default:
             return state;

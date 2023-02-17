@@ -63,12 +63,18 @@ router.delete(
 router.get(
     '/',
     restoreUser,
-    (req, res) => {
+    async (req, res) => {
         const { user } = req;
         // console.log(user)
         if (user) {
+            const cart = await Cart.getCart(user.id);
+            let senddata = [];
+            let obj = {};
+            obj['user'] = user.toSafeObject();
+            obj['cart'] = cart;
+            senddata.push(obj);
             return res.json({
-                user: user.toSafeObject()
+                data: senddata
             });
         } else {
             return res.json({})

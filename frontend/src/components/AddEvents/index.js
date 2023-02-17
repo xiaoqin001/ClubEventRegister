@@ -1,20 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import './AddEvents.css';
 import * as eventsAction from "../../store/events";
-const {
+import * as sessionActions from "../../store/session";
+import {
     Button,
     DatePicker,
     Form,
     Input,
     InputNumber,
     Select,
-    Upload,
-   } = antd;
+    Upload
+   } from 'antd';
+   const { TextArea } = Input;
 
 function AddEvents ()  {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [errors, setErrors] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [params, setParams] = useState({
         eventTitle: '',
         clubName: '',
@@ -25,20 +30,29 @@ function AddEvents ()  {
         ticketInventory: ''
     })
 
+    useEffect(()=>{
+        dispatch(sessionActions.restoreUser()).then(()=>setIsLoaded(true));
+      }, [dispatch]);
+
+    const sessionUser = useSelector(state=>state.session.user)
 
 
     const handleSubmit = (e) => {
-        e.preventDefault;
+        e.preventDefault();
         setErrors([]);
+        console.log(params)
         return dispatch(eventsAction.addevent({params}))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
+            .then(history.push("/"))
     }
+    const onReset = () =>{}
 
     return (
-        <>
+        <div>
+        {isLoaded && (
             <Form
                 labelCol={{
                     span: 4,
@@ -47,13 +61,13 @@ function AddEvents ()  {
                     span: 14,
                 }}
                 layout="horizontal"
-                onValuesChange={onFormLayoutChange}
-                disabled={componentDisabled}
+                // onValuesChange={onFormLayoutChange}
+                // disabled={componentDisabled}
                 style={{
                     maxWidth: 600,
                 }}
             >
-            <Form.Item name="eventTitle" label="Event Title" rules={[{required: true,},]}>
+            <Form.Item name="eventTitle" label="Event Title" rules={[{required: true},]}>
                 <Input
                     onChange={e => {params.eventTitle = e.target.value}}
                     value={params.eventTitle}
@@ -88,13 +102,13 @@ function AddEvents ()  {
             </Form.Item>
             <Form.Item name="date" label="Date" rules={[{required: true,},]}>
                 <DatePicker
-                        onChange={e => {params.location = e.target.value}}
+                        onChange={(date,dateString) => {params.date = dateString}}
                         value={params.location}
                 />
             </Form.Item>
             <Form.Item name="ticketInventory" label="Ticket Inventory" rules={[{required: true,},]}>
                 <InputNumber
-                    onChange={e => {params.location = e.target.value}}
+                    onChange={value => {params.ticketInventory = value}}
 
                     value={params.location}
                 />
@@ -103,8 +117,9 @@ function AddEvents ()  {
             <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Submit</Button>
             <Button className='Reset' htmlType="button" onClick={onReset}>Reset</Button>
           </Form.Item>
-            </Form>
-        </>
+        </Form>)}
+        </div>
+
     );
 
 }

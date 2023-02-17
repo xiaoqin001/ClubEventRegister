@@ -16,7 +16,8 @@ router.get(
 router.post(
     '/',
     asyncHandler (async (req, res, next) => {
-        const events  = await Event.addEvent(req.params);
+        // console.log(req.body.params.params)
+        const events  = await Event.addEvent(req.body.params.params);
         return res.json({ data: events});
     })
 );
