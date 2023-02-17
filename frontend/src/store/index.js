@@ -2,7 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { csrfFetch, restoreCSRF } from "./csrf";
 import sessionReducer from "./session";
-import eventsReducer from "./eventsReducer";
+import eventsReducer from "./events";
+import cartReducer from "./cart";
 
 const rootReducer = combineReducers({
   // add reducer functions here

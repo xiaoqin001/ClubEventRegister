@@ -11,10 +11,12 @@ import * as sessionActions from './store/session';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false)
+  console.log('here')
   useEffect(()=>{
     dispatch(sessionActions.restoreUser()).then(()=>setIsLoaded(true));
   }, [dispatch]);
 
+  console.log(isLoaded)
   return (
   // return (
     <>
@@ -32,5 +34,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

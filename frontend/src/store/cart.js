@@ -21,13 +21,17 @@ export const register = (params) => async dispatch => {
 }
 
 
-export const cartReducer = (state={}, action) => {
+const cartReducer = (state={}, action) => {
+    let newState;
     switch (action.type) {
         case ADD_TO_CART:
             newState = Object.assign({}, state);
-            newState.eventsincart[registeredevent.id] = registeredevent;
+            newState.eventsincart[action.payload.registeredevent.id] = action.payload.registeredevent;
             return newState;
         default:
             return state;
     }
 }
+
+
+export default cartReducer;

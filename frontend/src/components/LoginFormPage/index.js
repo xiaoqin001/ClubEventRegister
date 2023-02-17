@@ -13,6 +13,7 @@ function LoginFormPage() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
+    // console.log(sessionUser)
 
     if (sessionUser) {
         return (

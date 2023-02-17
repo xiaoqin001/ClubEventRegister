@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { User } = require('../../db/models');
+const { Cart } = require('../../db/models');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { check } = require('express-validator/check');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -26,6 +27,13 @@ router.post(
         const { credential, password } = req.body;
 
         const user = await User.login({ credential, password });
+        const cart = await Cart.getCart(user.id);
+
+        let senddata = [];
+        let obj = {};
+        obj['user'] = user;
+        obj['cart'] = cart;
+        senddata.push(obj);
 
         if (!user) {
             const err = new Error('Login failed');
@@ -37,7 +45,7 @@ router.post(
 
         await setTokenCookie(res, user);
 
-        return res.json({ user });
+        return res.json({ data: senddata });
     })
 
 );
@@ -57,6 +65,7 @@ router.get(
     restoreUser,
     (req, res) => {
         const { user } = req;
+        // console.log(user)
         if (user) {
             return res.json({
                 user: user.toSafeObject()

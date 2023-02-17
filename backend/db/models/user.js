@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     cartID: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
       unique: true,
     },
   }, {
@@ -110,6 +110,8 @@ module.exports = (sequelize, DataTypes) => {
       email,
       hashedPassword
     })
+    const cart = await user.createCart({UserID: user.id});
+    // user.addCart(cart);
     return await User.scope('currentUser').findByPk(user.id)
   }
   return User;

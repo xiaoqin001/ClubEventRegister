@@ -36,12 +36,12 @@ router.post(
     asyncHandler(async (req, res, next) => {
         const { username, email, password  } = req.body;
         const user = await User.signup({ username, email, password });
-        const cart = await Cart.createCart(user.id);
+        const cart = await Cart.getCart(user.id);
         let senddata = [];
         let obj = {};
         obj['user'] = user;
         obj['cart'] = cart;
-        senddate.push(obj);
+        senddata.push(obj);
 
         await setTokenCookie(res, user);
 

@@ -29,6 +29,7 @@ const setTokenCookie = (res, user) => {
 // restore the session user based on the contents of the JWT cookie.
 const restoreUser = (req, res, next) => {
     const { token } = req.cookies;
+    // console.log(req.user)
 
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         if (err){

@@ -21,16 +21,19 @@ export const addevent = (params) => async dispatch => {
 }
 
 
-export default eventsProducer = (state={}, action) => {
+const eventsReducer = (state={}, action) => {
+    let newState;
     switch (action.type) {
         case ADD_EVENT:
             newState = Object.assign({}, state);
             // newState.events.forEach(events=>{
             //     newState[events.id] = events;
             // });
-            newState[events.id] = events;
+            newState.event = action.payload.event;
             return newState;
         default:
             return state;
     }
 }
+
+export default eventsReducer;
