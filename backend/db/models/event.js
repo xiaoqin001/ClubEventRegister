@@ -47,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Event.getEvent = async function(type) {
-    if (!type) {
-      return await Event.findAll({order: ['createdAt', 'DESC']});
+    if (type=='All') {
+      return await Event.findAll({order: ['createdAt']});
     } else {
-      return await Event.findAll({ where: { eventType: type }, order: ['createdAt', 'DESC']});
+      return await Event.findAll({ where: { eventType: type }, order: ['createdAt']});
     }
   }
 

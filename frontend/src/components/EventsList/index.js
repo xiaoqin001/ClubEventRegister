@@ -1,15 +1,20 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import './EventList.css';
-const {  Card, Col, Row  } = antd
+import './EventsList.css';
+const {  Card, Col, Row  } = 'antd;'
 
 
-function EventsList () {
-    const allEvents = useSelector(state=>state.events);
+function EventsList ({data}) {
+    const [params, setParams] = useState({
+        type:''
+    })
+
+
+
 
     return (
         <>
-        {allEvents.map(({event}, i) => {
+        {/* {allEvents.map(({event}, i) => {
             return  (<Col span={8}>
                          <Card title={event.title} bordered={false}>
                             <p>{event.location}</p>
@@ -17,7 +22,7 @@ function EventsList () {
                         </Card>
                      </Col>
                     )
-        })}
+        })} */}
         </>
 
       );

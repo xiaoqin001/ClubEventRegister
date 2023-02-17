@@ -5,11 +5,10 @@ const { Event } = require('../../db/models');
 const router = express.Router();
 
 router.get(
-    '/',
+    '/:type',
     asyncHandler (async (req, res, next) => {
-        const events = await Event.getEvent(req.params.Type);
-        return res.json({ data: events });
-
+        const events = await Event.getEvent(req.params.type);
+        return res.json({ events });
     })
 );
 

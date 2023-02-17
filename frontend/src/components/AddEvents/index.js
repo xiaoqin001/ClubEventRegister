@@ -40,7 +40,6 @@ function AddEvents ()  {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        console.log(params)
         return dispatch(eventsAction.addevent({params}))
             .catch(async (res) => {
                 const data = await res.json();
