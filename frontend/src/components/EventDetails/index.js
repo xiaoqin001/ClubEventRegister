@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddToCart } from "../../store/cart";
 import { Redirect } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import './EventDetails.css';
 import * as eventsAction from "../../store/events";
+import * as cartActions from "../../store/cart";
 import {  Descriptions, Image, Button  } from 'antd';
 
 
 function EventDetails () {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state=>state.session.user);
+    const sessionCart = useSelector(state=>state.session.cart);
     const params = useParams();
     const { eventId } = params;
     const [errors, setErrors] = useState([]);
-    const [event, setEvent] = useState('')
+    const [event, setEvent] = useState('');
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [sessionInfo, setSessionInfo] = useState({
+        user: sessionUser,
+        cart: sessionCart,
+        event: eventId,
+    });
 
 
     useEffect( () => {
@@ -21,18 +29,17 @@ function EventDetails () {
         dispatch(eventsAction.getdetails({eventId}))
             .then(async (res) => {
                 const data = await res;
-                await setEvent(data);
-                console.log('here')
-                console.log(event);
+                setEvent(data);
+                setIsLoaded(true);
                 if (data && data.errors) setErrors(data.errors);
             })
-    }, [eventId]);
+    }, []);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(register(params))
+        return dispatch(cartActions.register({sessionInfo}))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -40,19 +47,21 @@ function EventDetails () {
     }
 
     return (
+
         <>
+
         <Descriptions>
 
             <Descriptions.Item>
             <Image
-                width={1000}
+                width={800}
                 alt="logo"
                 src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
             />
             </Descriptions.Item>
         </Descriptions>
 
-
+        {isLoaded && (
         <Descriptions title="Event Information">
             <Descriptions.Item label="Event Title">{event.events.eventTitle}</Descriptions.Item>
             <Descriptions.Item label="Club Name">{event.events.clubName}</Descriptions.Item>
@@ -61,9 +70,11 @@ function EventDetails () {
             <Descriptions.Item label="Location">{event.events.location}</Descriptions.Item>
             <Descriptions.Item label="Description">{event.events.description}</Descriptions.Item>
         </Descriptions>
+        )}
         <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Register</Button>
 
         </>
+
     )
 }
 

@@ -44,6 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       models.RegisteredEvent,
       { through: models.Register }
     );
+    // Event.hasMany(
+    //   models.Register,
+    // );
   };
 
   Event.getEvent = async function(type) {

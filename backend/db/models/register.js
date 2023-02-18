@@ -14,11 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     amount: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    eventId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+      // allowNull: false,
+      // unique: true,
     }
   }, {});
   Register.associate = function(models) {
     // associations can be defined here
     Register.hasOne(models.RegisteredEvent);
+    // Register.hasOne(models.Event);
   };
 
   Register.registerEvent = async function(params) {
