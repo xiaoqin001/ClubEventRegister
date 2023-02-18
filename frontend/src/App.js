@@ -8,6 +8,7 @@ import * as sessionActions from './store/session';
 import AddEvents from './components/AddEvents'
 import TypeNavigation from './components/TypeNavigation';
 import EventDetails from './components/EventDetails';
+import Cart from './components/Cart';
 
 
 
@@ -25,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route  path='/cart'>
+            <Cart />
+          </Route>
           <Route  path='/addevent'>
             <AddEvents />
           </Route>

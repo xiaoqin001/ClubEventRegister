@@ -19,7 +19,7 @@ router.use('/users/cart', cartRouter);
 
 router.use('/event', eventRouter);
 
-router.use('/registerRouter', registerRouter)
+router.use('/register', registerRouter)
 
 router.use('/eventdetails', eventdetailRouter)
 

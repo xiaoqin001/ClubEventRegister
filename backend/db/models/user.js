@@ -63,10 +63,10 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.hasOne(models.Cart);
     User.hasMany(models.RegisteredEvent);
-    User.belongsToMany(
-      models.Event,
-      { through: models.Register }
-    );
+    // User.belongsToMany(
+    //   models.Event,
+    //   { through: models.Register }
+    // );
   };
 
   // Authentication Flow

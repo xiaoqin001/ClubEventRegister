@@ -13,18 +13,20 @@ function Cart () {
         );
     }
 
-    const cartEvents = Object.values(sessionCart)
-    .map(item => {
-      return {
-        ...item,
-        ...events[item.id]
-      };
-    });
+    // const cartEvents = Object.values(sessionCart)
+    // .map(item => {
+    //   return {
+    //     ...item,
+    //     ...events[item.id]
+    //   };
+    // });
 
-    useEffect(()=>{
-        aysnc
-    }
-    )
+    // useEffect(()=>{
+    //     aysnc
+    // }
+    // )
 
 
 }
+
+export default Cart;

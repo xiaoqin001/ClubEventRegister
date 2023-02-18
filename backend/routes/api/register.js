@@ -9,11 +9,14 @@ const router = express.Router();
 router.post(
     '/',
     asyncHandler(async (req, res, next) => {
-        const register = await Register.registerEvent(req.params);
-        const params = req.params;
+        console.log(req.body.params.sessionInfo)
+        await Event.register(req.body.params.sessionInfo);
+        const register = await Register.registerEvent(req.body.params.sessionInfo);
+        const params = req.body.params.sessionInfo;
         params['registerID'] = register.id
         const registeredEvent = await RegisteredEvent.register(params);
-        return res.json({registeredEvent});
+        const event = await Event.getDetails(req.body.params.sessionInfo.event);
+        return res.json({event});
     })
 )
 

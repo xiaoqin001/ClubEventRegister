@@ -33,17 +33,17 @@ module.exports = (sequelize, DataTypes) => {
     RegisteredEvent.belongsTo(models.Cart);
     RegisteredEvent.belongsTo(models.User);
     // RegisteredEvent.belongsTo(models.Register);
-    RegisteredEvent.belongsToMany(
-      models.Event,
-      { through: models.Register }
-    );
+    // RegisteredEvent.belongsToMany(
+    //   models.Event,
+    //   { through: models.Register }
+    // );
   };
 
   RegisteredEvent.register = async function(params) {
-    const cart = params.cartID;
-    const user = params.userID;
+    const cart = params.cart;
+    const user = params.user;
     const amount = params.amount;
-    const event = params.eventID;
+    const event = params.event;
     const register = params.registerID;
     const newRegisterEvent = await RegisteredEvent.create(
       {

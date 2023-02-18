@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Cart.belongsTo(models.User);
     Cart.hasMany(models.RegisteredEvent);
-    Cart.belongsToMany(
-      models.Event,
-      { through: models.Register }
-    );
+    // Cart.belongsToMany(
+    //   models.Event,
+    //   { through: models.Register }
+    // );
   };
 
   // static method

@@ -13,6 +13,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <>
+                <NavLink exact to='/cart'>My Cart</NavLink>
                 <NavLink exact to='/addevent'>Add Event</NavLink>
                 <ProfileButton user={sessionUser} />
 

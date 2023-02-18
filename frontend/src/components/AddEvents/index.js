@@ -96,14 +96,14 @@ function AddEvents ()  {
             <Form.Item name="date" label="Date" rules={[{required: true,},]}>
                 <DatePicker
                         onChange={(date,dateString) => {params.date = dateString}}
-                        value={params.location}
+                        value={params.date}
                 />
             </Form.Item>
             <Form.Item name="ticketInventory" label="Ticket Inventory" rules={[{required: true,},]}>
                 <InputNumber
                     onChange={value => {params.ticketInventory = value}}
 
-                    value={params.location}
+                    value={params.ticketInventory}
                 />
             </Form.Item>
             <Form.Item className='buttons'>

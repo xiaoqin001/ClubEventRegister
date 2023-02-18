@@ -32,18 +32,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Event.associate = function(models) {
     // associations can be defined here
-    Event.belongsToMany(
-      models.User,
-      { through: models.Register }
-    );
-    Event.belongsToMany(
-      models.Cart,
-      { through: models.Register }
-    );
-    Event.belongsToMany(
-      models.RegisteredEvent,
-      { through: models.Register }
-    );
+    // Event.belongsToMany(
+    //   models.User,
+    //   { through: models.Register }
+    // );
+    // Event.belongsToMany(
+    //   models.Cart,
+    //   { through: models.Register }
+    // );
+    // Event.belongsToMany(
+    //   models.RegisteredEvent,
+    //   { through: models.Register }
+    // );
     // Event.hasMany(
     //   models.Register,
     // );
@@ -62,6 +62,20 @@ module.exports = (sequelize, DataTypes) => {
     return await Event.findOne({ where: { id: id } });
 
   }
+
+  Event.register = async function(params) {
+
+    const event = await Event.findOne({ where: { id: params.event } });
+    console.log(event.ticketInventory);
+    const tickets = event.ticketInventory - params.amount
+    event.ticketInventory = tickets;
+    console.log('ticket');
+    console.log(tickets);
+    console.log(event.ticketInventory)
+    await event.save();
+    return event;
+  }
+
 
   Event.addEvent = async function(params) {
     const title = params.eventTitle;

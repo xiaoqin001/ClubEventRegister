@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    eventId: {
+    eventID: {
       type: DataTypes.INTEGER,
       allowNull: false
       // allowNull: false,
@@ -24,19 +24,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Register.associate = function(models) {
     // associations can be defined here
-    Register.hasOne(models.RegisteredEvent);
+    // Register.hasOne(models.RegisteredEvent);
     // Register.hasOne(models.Event);
   };
 
   Register.registerEvent = async function(params) {
-    const cart = params.cartID;
-    const user = params.userID;
+    const cart = params.cart;
+    const user = params.user;
     const amount = params.amount;
+    const event = params.event;
     const newRegister = await Register.create(
       {
         cartID: cart,
         userID: user,
         amount: amount,
+        eventID: event
       }
     );
     return newRegister;
