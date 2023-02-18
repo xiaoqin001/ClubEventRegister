@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import TypeNavigation from "../TypeNavigation";
+import EventsList from "../EventsList";
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -25,7 +26,6 @@ function Navigation({ isLoaded }) {
             </>
         );
     }
-    console.log(sessionLinks)
     return (
         <ul>
             <li>
