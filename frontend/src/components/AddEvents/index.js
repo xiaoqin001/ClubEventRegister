@@ -30,11 +30,6 @@ function AddEvents ()  {
         ticketInventory: ''
     })
 
-    useEffect(()=>{
-        dispatch(sessionActions.restoreUser()).then(()=>setIsLoaded(true));
-      }, [dispatch]);
-
-    const sessionUser = useSelector(state=>state.session.user)
 
 
     const handleSubmit = (e) => {
@@ -51,7 +46,6 @@ function AddEvents ()  {
 
     return (
         <div>
-        {isLoaded && (
             <Form
                 labelCol={{
                     span: 4,
@@ -116,7 +110,7 @@ function AddEvents ()  {
             <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Submit</Button>
             <Button className='Reset' htmlType="button" onClick={onReset}>Reset</Button>
           </Form.Item>
-        </Form>)}
+        </Form>
         </div>
 
     );

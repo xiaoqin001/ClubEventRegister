@@ -15,7 +15,7 @@ function EventsList ({data}) {
     data = Array.from(data);
     if (!data) return;
     const datalist = data.map((_, i)=>({
-        href: '/',
+        href: '/eventdetail/' + data[i]['id'],
         title: data[i]['eventTitle'],
         // avatar: 'https://joeschmoe.io/api/v1/random',
         club: data[i]['clubName'],

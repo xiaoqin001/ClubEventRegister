@@ -4,7 +4,8 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const cartRouter = require('./cart.js');
 const eventRouter = require('./event.js');
-const registerRouter = require('./register.js')
+const registerRouter = require('./register.js');
+const eventdetailRouter = require('./eventdetail');
 // const asyncHandler = require('express-async-handler');
 // const { setTokenCookie } = require('../../utils/auth.js');
 // const { restoreUser } = require('../../utils/auth.js');
@@ -19,6 +20,8 @@ router.use('/users/cart', cartRouter);
 router.use('/event', eventRouter);
 
 router.use('/registerRouter', registerRouter)
+
+router.use('/eventdetails', eventdetailRouter)
 
 
 

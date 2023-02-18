@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import AddEvents from './components/AddEvents'
 import TypeNavigation from './components/TypeNavigation';
+import EventDetails from './components/EventDetails';
 
 
 
@@ -14,12 +15,10 @@ import TypeNavigation from './components/TypeNavigation';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false)
-  console.log('here')
   useEffect(()=>{
     dispatch(sessionActions.restoreUser()).then(()=>setIsLoaded(true));
   }, [dispatch]);
 
-  console.log(isLoaded)
   return (
   // return (
     <>
@@ -37,6 +36,9 @@ function App() {
           </Route>
           <Route path='/home'>
             <TypeNavigation />
+          </Route>
+          <Route path='/eventdetail/:eventId'>
+            <EventDetails />
           </Route>
         </Switch>
       )}

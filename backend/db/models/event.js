@@ -54,6 +54,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  Event.getDetails = async function(id) {
+
+    return await Event.findOne({ where: { id: id } });
+
+  }
+
   Event.addEvent = async function(params) {
     const title = params.eventTitle;
     const club = params.clubName;

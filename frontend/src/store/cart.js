@@ -9,7 +9,7 @@ export const AddToCart = (registeredevent) => {
 }
 
 export const register = (params) => async dispatch => {
-    const response = await csrfFetch('api/register', {
+    const response = await csrfFetch('/api/register', {
         method: "POST",
         body: JSON.stringify({
             params

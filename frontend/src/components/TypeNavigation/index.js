@@ -16,7 +16,7 @@ function TypeNavigation() {
 
     useEffect( () => {
         setErrors([]);
-        return dispatch(eventsAction.getevent({params}))
+        dispatch(eventsAction.getevent({params}))
             .then(async (res) => {
                 const data = await res;
                 setDatasource(data.events);
