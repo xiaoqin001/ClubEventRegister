@@ -45,7 +45,7 @@ function AddEvents ()  {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
-            .then(history.push("/"))
+            .then(history.push("/home"))
     }
     const onReset = () =>{}
 

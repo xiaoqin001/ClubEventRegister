@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink exact to='/addevent'>Add Event</NavLink>
                 <ProfileButton user={sessionUser} />
-                <TypeNavigation />
+
             </>
         );
     } else {

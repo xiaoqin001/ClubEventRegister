@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as eventsAction from '../../store/events';
 import {  Radio  } from 'antd';
 import EventsList from '../EventsList'
@@ -7,11 +7,24 @@ import EventsList from '../EventsList'
 
 function TypeNavigation() {
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState([])
-    const [datasource, setDatasource] = useState('')
+    const sessionUser = useSelector(state=>state.session.user);
+    const [errors, setErrors] = useState([]);
+    const [datasource, setDatasource] = useState('');
     const [params, setParams] = useState({
-        eventType:''
-    })
+        eventType:'All'
+    });
+
+    useEffect( () => {
+        setErrors([]);
+        return dispatch(eventsAction.getevent({params}))
+            .then(async (res) => {
+                const data = await res;
+                setDatasource(data.events);
+                if (data && data.errors) setErrors(data.errors);
+            })
+    }, [sessionUser.id]);
+
+
 
     const handleClick = (e) => {
         e.preventDefault();

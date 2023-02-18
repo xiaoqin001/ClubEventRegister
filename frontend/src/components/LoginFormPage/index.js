@@ -17,7 +17,7 @@ function LoginFormPage() {
 
     if (sessionUser) {
         return (
-            <Redirect to='/' />
+            <Redirect to='/home' />
         );
     }
 

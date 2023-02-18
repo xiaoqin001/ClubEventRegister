@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import AddEvents from './components/AddEvents'
+import TypeNavigation from './components/TypeNavigation';
 
 
 
@@ -34,8 +35,12 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
+          <Route path='/home'>
+            <TypeNavigation />
+          </Route>
         </Switch>
       )}
+
     </>
   );
 }
