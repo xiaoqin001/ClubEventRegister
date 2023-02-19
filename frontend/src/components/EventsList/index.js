@@ -31,12 +31,12 @@ function EventsList ({data}) {
         <List
         itemLayout="vertical"
         size="large"
-        // pagination={{
-        //   onChange: (page) => {
-        //     console.log(page);
-        //   },
-        //   pageSize: 3,
-        // }}
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 5,
+        }}
         dataSource={datalist}
         // footer={
         //   <div>
