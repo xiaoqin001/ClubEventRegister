@@ -27,7 +27,7 @@ router.post(
         const { credential, password } = req.body;
 
         const user = await User.login({ credential, password });
-        const cart = await Cart.getCart(user.id);
+        const cart = await Cart.getcart(user.id);
 
         let senddata = [];
         let obj = {};
@@ -67,7 +67,7 @@ router.get(
         const { user } = req;
         // console.log(user)
         if (user) {
-            const cart = await Cart.getCart(user.id);
+            const cart = await Cart.getcart(user.id);
             let senddata = [];
             let obj = {};
             obj['user'] = user.toSafeObject();

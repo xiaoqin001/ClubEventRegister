@@ -24,7 +24,11 @@ function EventDetails () {
         user: sessionUser.id,
         cart: sessionCart.id,
         event: parseInt(eventId),
-        amount: 1
+        amount: 1,
+        eventTitle: '',
+        clubName: '',
+        location: '',
+        date: ''
     });
 
 
@@ -35,6 +39,12 @@ function EventDetails () {
                 const data = await res;
                 setEvent(data);
                 setTickets(data.events.ticketInventory)
+                sessionInfo.eventTitle = data.events.eventTitle;
+                sessionInfo.clubName = data.events.clubName;
+                sessionInfo.location = data.events.location;
+                sessionInfo.date = data.events.date;
+                let test={...sessionInfo}
+                setSessionInfo(test)
                 setIsLoaded(true);
                 if (data && data.errors) setErrors(data.errors);
             })

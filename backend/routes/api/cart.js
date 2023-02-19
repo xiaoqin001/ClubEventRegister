@@ -6,21 +6,14 @@ const { RegisteredEvent } = require('../../db/models');
 const router = express.Router();
 
 router.get(
-    '/',
+    '/:cartID',
     asyncHandler(async (req, res, next) => {
-        const UserID = req.body.userid;
-        const cart = await Cart.getCart(UserID);
-        const registered_event = await RegisteredEvent.getRegisteredEvent(UserID);
-        let newobject = {};
-        newobject['cart'] = cart;
-        newobject['registered_event'] = registered_event
-        results = [];
-        results.push(newobject);
+        const cartID = req.params.cartID;
+        // const cart = await Cart.getCart(cartID);
+        const registered_event = await RegisteredEvent.getRegisteredEvent(cartID);
+        console.log(registered_event);
 
-
-        return res.json({
-            data: results
-         });
+        return res.json({registered_event});
     })
 );
 
@@ -35,6 +28,14 @@ router.get(
 // )
 
 // router.put();
-// router.delete();
+router.delete(
+    '/:cartId',
+    (req, res) => {
+        const cartID = req.params.cartId;
+        console.log('1');
+        console.log(req.params);
+        RegisteredEvent.clear(cartID);
+    }
+);
 
 module.exports = router;

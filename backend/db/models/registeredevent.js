@@ -26,12 +26,28 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
+    },
+    eventTitle: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    clubName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {});
   RegisteredEvent.associate = function(models) {
     // associations can be defined here
-    RegisteredEvent.belongsTo(models.Cart);
-    RegisteredEvent.belongsTo(models.User);
+    // RegisteredEvent.belongsTo(models.Cart);
+    // RegisteredEvent.belongsTo(models.User);
     // RegisteredEvent.belongsTo(models.Register);
     // RegisteredEvent.belongsToMany(
     //   models.Event,
@@ -45,26 +61,42 @@ module.exports = (sequelize, DataTypes) => {
     const amount = params.amount;
     const event = params.event;
     const register = params.registerID;
+    const title = params.eventTitle;
+    const club = params.clubName;
+    const location = params.location;
+    const date = params.date;
     const newRegisterEvent = await RegisteredEvent.create(
       {
         cartID: cart,
         userID: user,
         amount: amount,
         eventID: event,
-        registerID: register
+        registerID: register,
+        EventID: event,
+        eventTitle: title,
+        clubName: club,
+        location: location,
+        date: date
       }
     );
-    // const cart1 = await Cart.findByPk(cart);
-    // const user1 = await User.findByPk(user);
-    // const register1 = await Register.findByPk(registerID);
-    // const event1 = await Event.findByPk(event);
 
-    // cart1.addRegisteredEvent(newRegister);
-    // user1.addRegisteredEvent(newRegister);
-    // register1.addRegisteredEvent(newRegister);;
-    // event1.addRegisteredEvent(newRegister);
 
     return newRegisterEvent;
+  }
+
+  RegisteredEvent.getRegisteredEvent = async function(cartID) {
+    return await RegisteredEvent.findAll({ where: { cartID: cartID } });
+  }
+  RegisteredEvent.clear = async function(cartID) {
+    console.log('2')
+    console.log(cartID);
+    const { Op } = require('sequelize');
+    const re = await RegisteredEvent.destroy(
+      { where:
+          { cartID: { [Op.lte]: cartID } }  // specific records to delete
+      }
+  );
+
   }
 
   return RegisteredEvent;

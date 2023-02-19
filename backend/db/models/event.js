@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     //   { through: models.Register }
     // );
     // Event.hasMany(
-    //   models.Register,
+    //   models.RegisteredEvent,
     // );
   };
 
@@ -69,9 +69,6 @@ module.exports = (sequelize, DataTypes) => {
     console.log(event.ticketInventory);
     const tickets = event.ticketInventory - params.amount
     event.ticketInventory = tickets;
-    console.log('ticket');
-    console.log(tickets);
-    console.log(event.ticketInventory)
     await event.save();
     return event;
   }

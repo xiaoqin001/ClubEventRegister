@@ -11,7 +11,6 @@ function EventsList ({data}) {
         type:''
     })
 
-    console.log({data});
     data = Array.from(data);
     if (!data) return;
     const datalist = data.map((_, i)=>({
@@ -21,6 +20,7 @@ function EventsList ({data}) {
         club: data[i]['clubName'],
         date: data[i]['date'],
         description: data[i]['description'],
+        location: data[i]['location']
     })
     )
 
@@ -61,6 +61,7 @@ function EventsList ({data}) {
               description={item.description}
             />
                 <div>Club: {item.club}</div>
+                <div>Location: {item.location}</div>
                 <div>Date: {item.date.slice(0,10)}</div>
           </List.Item>
         )}

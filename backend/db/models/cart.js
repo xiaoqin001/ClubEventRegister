@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Cart.associate = function(models) {
     // associations can be defined here
     Cart.belongsTo(models.User);
-    Cart.hasMany(models.RegisteredEvent);
+    // Cart.hasMany(models.RegisteredEvent);
     // Cart.belongsToMany(
     //   models.Event,
     //   { through: models.Register }
@@ -28,10 +28,17 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // static method
-  Cart.getCart = async function(userID) {
+  Cart.getCart = async function(id) {
 
-    return await Cart.findOne({ where: { UserID: userID } });
+    return await Cart.findOne({ where: { id: id } });
   }
+
+  Cart.getcart = async function(userId) {
+
+    return await Cart.findOne({ where: { UserID: userId } });
+  }
+
+
   Cart.createCart = async function(userID) {
     const cart = await Cart.create({
       userID,
