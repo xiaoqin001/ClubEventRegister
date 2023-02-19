@@ -1,0 +1,17 @@
+.addEvent{
+    margin-top: 50px;
+    width: 1000px;
+    margin-left: 400px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.addSubmit{
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.addReset{
+    margin-top: 50px;
+    margin-left: 100px;
+}

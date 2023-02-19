@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as eventsAction from '../../store/events';
 import {  Radio  } from 'antd';
 import EventsList from '../EventsList'
+import './TypeNavigation.css'
 
 
 function TypeNavigation() {
@@ -40,7 +41,8 @@ function TypeNavigation() {
 
 
     return(
-        <>
+        <div >
+            <div class='eventType'>
             <Radio.Group defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}>
                 <Radio.Button value="All">All</Radio.Button>
                 <Radio.Button value="Academic">Academic</Radio.Button>
@@ -48,10 +50,11 @@ function TypeNavigation() {
                 <Radio.Button value="Sports">Sports</Radio.Button>
                 <Radio.Button value="Others">Others</Radio.Button>
             </Radio.Group>
-
+            </div>
+            <div class='eventList'>
             <EventsList data={datasource} />
-
-        </>
+            </div>
+        </div>
     );}
 
 

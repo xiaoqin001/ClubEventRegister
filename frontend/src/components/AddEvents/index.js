@@ -45,7 +45,7 @@ function AddEvents ()  {
     const onReset = () =>{}
 
     return (
-        <div>
+        <div class='addEvent'>
             <Form
                 labelCol={{
                     span: 4,
@@ -99,7 +99,7 @@ function AddEvents ()  {
                         value={params.date}
                 />
             </Form.Item>
-            <Form.Item name="ticketInventory" label="Ticket Inventory" rules={[{required: true,},]}>
+            <Form.Item name="ticketInventory" label="Inventory" rules={[{required: true,},]}>
                 <InputNumber
                     onChange={value => {params.ticketInventory = value}}
 
@@ -107,8 +107,8 @@ function AddEvents ()  {
                 />
             </Form.Item>
             <Form.Item className='buttons'>
-            <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Submit</Button>
-            <Button className='Reset' htmlType="button" onClick={onReset}>Reset</Button>
+            <Button className='addSubmit' type="primary" htmlType="submit" onClick={handleSubmit}>Add</Button>
+            <Button className='addReset' htmlType="button" onClick={onReset}>Reset</Button>
           </Form.Item>
         </Form>
         </div>

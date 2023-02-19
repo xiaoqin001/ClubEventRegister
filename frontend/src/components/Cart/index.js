@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  Avatar, List, Space, Button  } from 'antd';
 import * as cartActions from "../../store/cart";
+import "./Cart.css"
 
 
 
@@ -51,7 +52,7 @@ function Cart () {
 
 
     return (
-        <>
+        <div class='cart'>
         <List
         itemLayout="vertical"
         size="large"
@@ -91,8 +92,8 @@ function Cart () {
         )}
 
       />
-      <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Clear My Cart</Button>
-      </>
+      <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Clear My Events</Button>
+      </div>
 
       );
 }
