@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+.EventListBox{
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: stretch;
+    gap: 20px;
+    padding: 40px 0px;
+    padding-top: 0px;
+}
+.EventListBox a{
+    width: 100%;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 10px;
+    /* margin:15px 10px; */
+}
+.EventListBox a:hover{
+    box-shadow: grey 0px 0px 10px;
+}
+.EventListBox a .item_img{
+    margin: 0px;
+}
+.EventListBox a .item_img img{
+    width: 100%;
+}
+
+.EventListBox a .item_title{
+    font-size: 20px;
+    color: rgb(230, 49, 49);
+    font-weight: bold;
+}
+.EventListBox a .item_description,
+.EventListBox a .t{
+    font-size: 16px;
+    color: #000;
+    margin: 10px 0;
+}
+
+.pro{
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+}

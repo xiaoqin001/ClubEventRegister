@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  Avatar, List, Space, Button  } from 'antd';
+import {  Avatar, List, Space, Button,Pagination  } from 'antd';
 import * as cartActions from "../../store/cart";
 import "./Cart.css"
 
@@ -53,6 +53,39 @@ function Cart () {
 
     return (
         <div class='cart'>
+        <div className="cart_box">
+          <h2>My Cart Events</h2>
+          <div className="carts_list">
+            {
+              datalist.map((item,index)=>{
+                return(
+                  <a href='javaScript:;'>
+                    <img
+                      className="cartPhoto"
+                      alt="logo"
+                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                    />
+                    <div className="content">
+                        <p className="title">{item.title}</p>
+                        <p className="pdescription">{item.description}</p>
+                        <p>Club: {item.club}</p>
+                        <p>location: {item.location}</p>
+                        <p>Date: {item.date.slice(0,10)}</p>
+                    </div>
+                  </a>
+                )
+              })
+            }
+          </div>
+          <dv className='clear'>
+            <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Clear My Events</Button>
+          </dv>
+          <div class='pro'>
+            <Pagination defaultCurrent={1} total={datalist.length} />
+          </div>
+        </div>
+
+{/*
         <List
         itemLayout="vertical"
         size="large"
@@ -93,6 +126,7 @@ function Cart () {
 
       />
       <Button className='submit' type="primary" htmlType="submit" onClick={handleSubmit}>Clear My Events</Button>
+       */}
       </div>
 
       );

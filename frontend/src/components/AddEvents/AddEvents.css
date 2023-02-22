@@ -1,17 +1,44 @@
 .addEvent{
-    margin-top: 50px;
-    width: 1000px;
-    margin-left: 400px;
+    width: 100%;
+    /* margin-left: 400px; */
     /* display: flex;
     justify-content: center; */
 }
-
+.addEvent .banner{
+    width: 100%;
+    height: 80px;
+}
+.addEvent .box{
+    width: 1300px;
+    margin: 0 auto;
+    background: #f2f2f2;
+    padding: 20px;
+    border: 1px solid rgb(230, 230, 230);
+}
+.addEvent .title{
+    text-align: center;
+    font-size: 25px;
+    color: #ff9000;
+    margin-bottom: 50px;
+}
+.addEvent .ant-form{
+    margin: 0 auto;
+    /* display: flex;
+    justify-content: center; */
+}
+.addEvent .ant-form .buttons .ant-form-item-control-input-content{
+display: flex;
+justify-content: center;
+}
+.addEvent .ant-form .buttons .ant-form-item-control-input-content button{
+    margin:0 10px;
+}
 .addSubmit{
     margin-top: 50px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
 
 .addReset{
     margin-top: 50px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }

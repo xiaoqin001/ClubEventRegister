@@ -41,15 +41,23 @@ function TypeNavigation() {
 
 
     return(
-        <div >
+        <div className='eventBox'>
+            <img src={require('../../assets/images/arena.jpeg')} className='banner'/>
             <div class='eventType'>
-            <Radio.Group defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}>
-                <Radio.Button value="All">All</Radio.Button>
-                <Radio.Button value="Academic">Academic</Radio.Button>
-                <Radio.Button value="Recreation">Recreation</Radio.Button>
-                <Radio.Button value="Sports">Sports</Radio.Button>
-                <Radio.Button value="Others">Others</Radio.Button>
-            </Radio.Group>
+                <div className='tab_tap'>
+                    <a href='javaScript:;' className='active'>ALL</a>
+                    <a href='javaScript:;' className=''>Academic</a>
+                    <a href='javaScript:;' className=''>Recreation</a>
+                    <a href='javaScript:;' className=''>Sports</a>
+                    <a href='javaScript:;' className=''>Others</a>
+                </div>
+                <Radio.Group style={{display:'none'}} defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}>
+                    <Radio.Button value="All">All</Radio.Button>
+                    <Radio.Button value="Academic">Academic</Radio.Button>
+                    <Radio.Button value="Recreation">Recreation</Radio.Button>
+                    <Radio.Button value="Sports">Sports</Radio.Button>
+                    <Radio.Button value="Others">Others</Radio.Button>
+                </Radio.Group>
             </div>
             <div class='eventList'>
             <EventsList data={datasource} />

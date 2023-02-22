@@ -1,19 +1,40 @@
+.eventBox .banner{
+    width: 100%;
+    height: 400px;
+}
 .eventType{
-    width: 1000px;
-    margin-top: 100px;
-    margin-left: 200px;
+    width: 1300px;
+    margin: 50px auto 0px auto;
     display: flex;
-    justify-content: center;
 }
 
 .eventList{
     margin-top: 50px;
-    width: 1000px;
-    margin-left: 200px
+    width: 1300px;
+    margin: 50px auto;
     /* display: flex;
     justify-content: center; */
 }
 
 .eventbarTitle{
     margin-bottom: 100px;
+}
+.eventBox .eventType .tab_tap {
+    display: flex;
+    flex-wrap: wrap;
+}
+.eventBox .eventType .tab_tap a{
+    color: #000;
+    margin-right: 10px;
+}
+.eventBox .eventType .tab_tap a:hover{
+    color: #1677ff;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+}
+.eventBox .eventType .tab_tap .active{
+    color: #1677ff;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1677ff;
 }

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './EventsList.css';
-import {  Avatar, List, Space  } from 'antd';
+import {  Avatar, List, Space,Pagination  } from 'antd';
 const { createRoot } = 'ReactDOM';
 
 
@@ -28,8 +28,38 @@ function EventsList ({data}) {
 
 
     return (
-        <List
-        itemLayout="vertical"
+      <>
+      <div className="EventListBox">
+        {
+          datalist.map((item,index)=>{
+            return(
+              // <a href='javascript:;'>
+              <a href={item.href}>
+                <p className="item_img">
+                  <img
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+                </p>
+                <p className="item_title">
+                  {item.title}
+                </p>
+                <p className="item_description">
+                  {item.description}
+                </p>
+                <p className="t">Club: {item.club}</p>
+                <p className="t">Location: {item.location}</p>
+                <p className="t">Date: {item.date.slice(0,10)}</p>
+              </a>
+            )
+          })
+        }
+      </div>
+      <div class='pro'>
+      <Pagination defaultCurrent={1} total={10} />
+      </div>
+        {/* <List
+        itemLayout="vertical"s
         size="large"
         pagination={{
           onChange: (page) => {
@@ -65,8 +95,8 @@ function EventsList ({data}) {
                 <div>Date: {item.date.slice(0,10)}</div>
           </List.Item>
         )}
-      />
-
+      /> */}
+      </>
       );
 }
 

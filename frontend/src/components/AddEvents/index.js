@@ -46,71 +46,77 @@ function AddEvents ()  {
 
     return (
         <div class='addEvent'>
-            <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
-                layout="horizontal"
-                // onValuesChange={onFormLayoutChange}
-                // disabled={componentDisabled}
-                style={{
-                    maxWidth: 600,
-                }}
-            >
-            <Form.Item name="eventTitle" label="Event Title" rules={[{required: true},]}>
-                <Input
-                    onChange={e => {params.eventTitle = e.target.value}}
-                    value={params.eventTitle}
-                />
-            </Form.Item>
-            <Form.Item name="clubName" label="Club Name" rules={[{required: true,},]}>
-                <Input
-                    onChange={e => {params.clubName = e.target.value}}
-                    value={params.clubName}
-                />
-            </Form.Item>
-            <Form.Item name="eventType" label="Event Types" rules={[{required: true,},]}>
-                <Select onChange={e =>{params.eventType = e }}>
-                    <Select.Option value="Academic">Academic</Select.Option>
-                    <Select.Option value="Recreation">Recreation</Select.Option>
-                    <Select.Option value="Sports">Sports</Select.Option>
-                    <Select.Option value="Others">Others</Select.Option>
-                </Select>
-            </Form.Item>
-            <Form.Item name="description" label="Description" rules={[{required: true,},]}>
-                <TextArea
-                    rows={4}
-                    onChange={e => {params.description = e.target.value}}
-                    value={params.description}
-                />
-            </Form.Item>
-            <Form.Item name="location" label="Location" rules={[{required: true,},]}>
-                <Input
-                    onChange={e => {params.location = e.target.value}}
-                    value={params.location}
-                />
-            </Form.Item>
-            <Form.Item name="date" label="Date" rules={[{required: true,},]}>
-                <DatePicker
-                        onChange={(date,dateString) => {params.date = dateString}}
-                        value={params.date}
-                />
-            </Form.Item>
-            <Form.Item name="ticketInventory" label="Inventory" rules={[{required: true,},]}>
-                <InputNumber
-                    onChange={value => {params.ticketInventory = value}}
+            <img src={require('../../assets/images/arena.jpeg')} className='banner'/>
+            <div className='box'>
+                <div className="title">
+                    <h2>Add Event</h2>
+                </div>
+                <Form
+                    labelCol={{
+                        span: 4,
+                    }}
+                    wrapperCol={{
+                        span: 24,
+                    }}
+                    layout="horizontal"
+                    // onValuesChange={onFormLayoutChange}
+                    // disabled={componentDisabled}
+                    style={{
+                        maxWidth: 800,
+                    }}
+                    >
+                    <Form.Item name="eventTitle" label="Event Title" rules={[{required: true},]}>
+                        <Input
+                            onChange={e => {params.eventTitle = e.target.value}}
+                            value={params.eventTitle}
+                        />
+                    </Form.Item>
+                    <Form.Item name="clubName" label="Club Name" rules={[{required: true,},]}>
+                        <Input
+                            onChange={e => {params.clubName = e.target.value}}
+                            value={params.clubName}
+                        />
+                    </Form.Item>
+                    <Form.Item name="eventType" label="Event Types" rules={[{required: true,},]}>
+                        <Select onChange={e =>{params.eventType = e }}>
+                            <Select.Option value="Academic">Academic</Select.Option>
+                            <Select.Option value="Recreation">Recreation</Select.Option>
+                            <Select.Option value="Sports">Sports</Select.Option>
+                            <Select.Option value="Others">Others</Select.Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item name="description" label="Description" rules={[{required: true,},]}>
+                        <TextArea
+                            rows={4}
+                            onChange={e => {params.description = e.target.value}}
+                            value={params.description}
+                        />
+                    </Form.Item>
+                    <Form.Item name="location" label="Location" rules={[{required: true,},]}>
+                        <Input
+                            onChange={e => {params.location = e.target.value}}
+                            value={params.location}
+                        />
+                    </Form.Item>
+                    <Form.Item name="date" label="Date" rules={[{required: true,},]}>
+                        <DatePicker
+                                onChange={(date,dateString) => {params.date = dateString}}
+                                value={params.date}
+                        />
+                    </Form.Item>
+                    <Form.Item name="ticketInventory" label="Inventory" rules={[{required: true,},]}>
+                        <InputNumber
+                            onChange={value => {params.ticketInventory = value}}
 
-                    value={params.ticketInventory}
-                />
-            </Form.Item>
-            <Form.Item className='buttons'>
-            <Button className='addSubmit' type="primary" htmlType="submit" onClick={handleSubmit}>Add</Button>
-            <Button className='addReset' htmlType="button" onClick={onReset}>Reset</Button>
-          </Form.Item>
-        </Form>
+                            value={params.ticketInventory}
+                        />
+                    </Form.Item>
+                    <Form.Item className='buttons'>
+                        <Button className='addSubmit' type="primary" htmlType="submit" onClick={handleSubmit}>Add</Button>
+                        <Button className='addReset' htmlType="button" onClick={onReset}>Reset</Button>
+                </Form.Item>
+                </Form>
+            </div>
         </div>
 
     );

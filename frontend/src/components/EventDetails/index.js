@@ -20,20 +20,10 @@ function EventDetails () {
     const [event, setEvent] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const [tickets, setTickets] = useState(1000)
-    const [sessionInfo, setSessionInfo] = useState({
-        user: sessionUser.id,
-        cart: sessionCart.id,
-        event: parseInt(eventId),
-        amount: 1,
-        eventTitle: '',
-        clubName: '',
-        location: '',
-        date: ''
-    });
-
 
     useEffect( () => {
         setErrors([]);
+
         dispatch(eventsAction.getdetails({eventId}))
             .then(async (res) => {
                 const data = await res;
@@ -43,12 +33,53 @@ function EventDetails () {
                 sessionInfo.clubName = data.events.clubName;
                 sessionInfo.location = data.events.location;
                 sessionInfo.date = data.events.date;
+                const te = await sessionUser
+                console.log(sessionUser)
+                sessionInfo.user = await sessionUser.id;
+                sessionInfo.cart = await sessionCart.id;
+                let test={...sessionInfo}
+                setSessionInfo(test)
+                setIsLoaded(true);
+                if (data && data.errors) setErrors(data.errors);
+            })
+    },[sessionUser]);
+
+    useEffect( () => {
+        setErrors([]);
+
+        dispatch(eventsAction.getdetails({eventId}))
+            .then(async (res) => {
+                const data = await res;
+                setEvent(data);
+                setTickets(data.events.ticketInventory)
+                sessionInfo.eventTitle = data.events.eventTitle;
+                sessionInfo.clubName = data.events.clubName;
+                sessionInfo.location = data.events.location;
+                sessionInfo.date = data.events.date;
+                const te = await sessionUser
+                console.log(sessionUser)
+                sessionInfo.user = await sessionUser.id;
+                sessionInfo.cart = await sessionCart.id;
                 let test={...sessionInfo}
                 setSessionInfo(test)
                 setIsLoaded(true);
                 if (data && data.errors) setErrors(data.errors);
             })
     },[tickets]);
+
+
+    const [sessionInfo, setSessionInfo] = useState({
+        // user: sessionUser,
+        // cart: sessionCart,
+        user:'',
+        cart:'',
+        event: parseInt(eventId),
+        amount: 1,
+        eventTitle: '',
+        clubName: '',
+        location: '',
+        date: ''
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
