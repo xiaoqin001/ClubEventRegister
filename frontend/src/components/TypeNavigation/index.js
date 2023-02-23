@@ -23,7 +23,7 @@ function TypeNavigation() {
                 setDatasource(data.events);
                 if (data && data.errors) setErrors(data.errors);
             })
-    }, [sessionUser.id]);
+    }, [sessionUser]);
 
 
 
