@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventsAction from '../../store/events';
-import {  Radio  } from 'antd';
+import {  Radio, Menu  } from 'antd';
 import EventsList from '../EventsList'
 import './TypeNavigation.css'
 
@@ -44,14 +44,15 @@ function TypeNavigation() {
         <div className='eventBox'>
             <img src={require('../../assets/images/arena.jpeg')} className='banner'/>
             <div class='eventType'>
-                <div className='tab_tap'>
+                {/* <div className='tab_tap'>
                     <a href='javaScript:;' className='active'>ALL</a>
                     <a href='javaScript:;' className=''>Academic</a>
                     <a href='javaScript:;' className=''>Recreation</a>
                     <a href='javaScript:;' className=''>Sports</a>
                     <a href='javaScript:;' className=''>Others</a>
-                </div>
-                <Radio.Group style={{display:'none'}} defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}>
+                </div> */}
+                {/* <Radio.Group style={{display:'none'}} defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}> */}
+                <Radio.Group defaultValue="All" buttonStyle="solid" onChange={e =>{handleClick(e)}}>
                     <Radio.Button value="All">All</Radio.Button>
                     <Radio.Button value="Academic">Academic</Radio.Button>
                     <Radio.Button value="Recreation">Recreation</Radio.Button>
@@ -64,7 +65,11 @@ function TypeNavigation() {
             </div>
         </div>
     );}
-
+    // const onClick = (e) => {
+    //     console.log('click ', e);
+    //     setCurrent(e.key);
+    //   };
+    // return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;}
 
 
 export default TypeNavigation;
