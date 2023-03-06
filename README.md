@@ -1,1 +1,1 @@
-# ClubEventRegister
+# HopEvents
